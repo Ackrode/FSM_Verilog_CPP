@@ -1,0 +1,10 @@
+module FSM;
+input clk,reset;
+input [1:0] x;
+output y;
+A,E-0,D-1;
+B,F-0,D-0;
+C,E-0,B-1;
+D,F-0,B-0;
+E,C-0,F-1;
+F,B-0,C-0;
