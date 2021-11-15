@@ -1,0 +1,7 @@
+module FSM1;
+input clk,reset,x;
+output outp;
+A, B-1, A-1;
+B, B-0, C-0;
+C, D-0, C-0;
+D, D-0, A-0;
