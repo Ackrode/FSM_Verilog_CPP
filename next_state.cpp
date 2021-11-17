@@ -52,13 +52,22 @@ int main(){
         design.append(it->first);
         design.append(":\n");
         int j=0;
+        
         for (auto it2 = it->second.begin(); it2 != it->second.end(); ++it2)
         {
+            //if it is the last element
+            if(it2+1==it->second.end()){
+            design.append("\t\t\t\t\telse\n");
+            design.append("\t\t\t\t\t\tnext_state="+*it2+";\n");
+            j++;
+            }
+            else{
             design.append("\t\t\t\t\tif("+ins+"=="+to_string(j)+")\n");
             design.append("\t\t\t\t\t\tnext_state="+*it2+";\n");
             j++;
+            }
+
         }
-        design.append("\t\t\t\tend\n");
     }
     design.append("\t\tendcase\n");
     design.append("\tend\n");
