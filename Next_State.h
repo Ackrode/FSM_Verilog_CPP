@@ -40,11 +40,18 @@ void NextState(string FileName, array <map <string, array <int, 2>>, 2> inouts, 
         int j=0;
         for (auto it2 = it->second.begin(); it2 != it->second.end(); ++it2)
         {
-            design.append("\t\t\t\t\tif("+ins+"=="+to_string(j)+")\n");
-            design.append("\t\t\t\t\t\tnext_state="+*it2+";\n");
-            j++;
+            if(it2+1==it->second.end()){
+                design.append("\t\t\t\t\telse\n");
+                design.append("\t\t\t\t\t\tnext_state="+*it2+";\n");
+                j++;
+            }
+            else{
+                design.append("\t\t\t\t\tif("+ins+"=="+to_string(j)+")\n");
+                design.append("\t\t\t\t\t\tnext_state="+*it2+";\n");
+                j++;
+            }
         }
-        design.append("\t\t\t\tend\n");
+
     }
     design.append("\t\tendcase\n");
     design.append("\tend");
