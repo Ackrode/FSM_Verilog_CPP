@@ -7,8 +7,8 @@
 #include "stimulus.h"
 int main()
 {
-    string FileName = "Moore_design.sv";
-    string SpecTable = "State_Table_3.txt";
+    string FileName = "Mealy_design.sv";
+    string SpecTable = "State_Table_2.txt";
     array <map <string, array <int, 2>>, 2> Entity;
     array <map <string, vector <string>>, 2> States;
     string module;

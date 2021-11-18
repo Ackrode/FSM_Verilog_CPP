@@ -1,4 +1,4 @@
-module FSM;
+module FSM2;
 input clk,reset,x;
 output outp;
 A, E-0, D-1;
