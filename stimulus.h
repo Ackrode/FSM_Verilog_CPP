@@ -142,7 +142,7 @@ fstream OL;
 OL.open( module + "_TB.sv", ios::app);
 
 OL << "$display("<<"\"*********************************************\")"<<";"<<endl;
-OL << "clk = 1'b0; reset = 1'b1; x = 1'b0; #2"<<endl;
+OL << "clk = 1'b0; reset = 1'b1; #2"<<endl;
 OL << "$display(\"clk = %b, reset = %b, x = %b, outp = %b\", clk, reset, x, outp);"<<endl;
 OL << "reset = 1'b0;"<<endl;
   for (int i = 0; i <x.size(); i++)
