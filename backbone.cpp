@@ -51,7 +51,7 @@ void backbone(map <string,array<int,2>> inputs,map <string,array<int,2>>  output
     testbench.append("// addd stimulus\n");
     int n=get_n(inputs);
     // Write files with the testbench
-    outfile.open ( module + "_TB.sv",ios::app);
+    outfile.open ( module + "_TB.sv",ios::out);
     outfile << testbench;
     outfile.close();
 }
