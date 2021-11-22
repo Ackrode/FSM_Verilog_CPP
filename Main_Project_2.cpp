@@ -1,10 +1,10 @@
-#include "get_entity.h"
-#include "get_states.h"
-#include "State.h"
-#include "Next_State.h"
-#include "Output_Logic.h"
-#include "backbone.h"
-#include "stimulus.h"
+#include "get_entity.cpp"
+#include "get_states.cpp"
+#include "State.cpp"
+#include "Next_State.cpp"
+#include "Output_Logic.cpp"
+#include "backbone.cpp"
+#include "stimulus.cpp"
 int main()
 {
     string FileName = "Mealy_design.sv";
