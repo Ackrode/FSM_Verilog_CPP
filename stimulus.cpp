@@ -13,12 +13,32 @@ void stimulus(array<map<string, array<int,2>>,2> inf_entity,array<map <string, v
 vector<string> edop;
 array<vector<string>,2> estados;
 array<vector<int>,2> estadosnum;
+vector<string> inputs, outputs;
 //////////////////////////////////////////////////////////////////////////////////////
 for(auto it=states[0].begin(); it!=states[0].end();it++){
      edop.push_back(it->first);
      estados[0].push_back(it->second[0]);
      estados[1].push_back(it->second[1]);
      }
+for(auto it2=inf_entity[0].begin(); it2!=inf_entity[0].end();it2++){
+     inputs.push_back(it2->first);
+     }
+for(auto it3=inf_entity[1].begin(); it3!=inf_entity[1].end();it3++){
+     outputs.push_back(it3->first);
+     }
+/*
+cout << "Inputs: ";
+for(auto i=inputs.begin(); i!=inputs.end(); i++){
+     cout << *i << " ";
+}
+cout << endl;
+
+cout << "Outputs: ";
+for(auto j=outputs.begin(); j!=outputs.end(); j++){
+     cout << *j << " ";
+}
+cout << endl;
+*/
 //////////////////////////////////////////////////////////////////////////////////////////7
 int valor=0,valor1=0;
 for(int i=0; i<edop.size(); i++ ){
@@ -102,7 +122,7 @@ vector<int> x,val,val1;
 // p=estadosnum[0][0];
 // p1=estadosnum[0][p];
 i=0;
-j=1; //cambiar a 0 si es una maquina mealy
+j=0; //cambiar a 0 si es una maquina mealy
 
 /////////////////////////////////////////////////////////////////////
 count=0;
@@ -142,14 +162,22 @@ fstream OL;
 OL.open( module + "_TB.sv", ios::app);
 
 OL << "$display("<<"\"*********************************************\")"<<";"<<endl;
-OL << "clk = 1'b0; reset = 1'b1; #2"<<endl;
-OL << "$display(\"clk = %b, reset = %b, x = %b, outp = %b\", clk, reset, x, outp);"<<endl;
-OL << "reset = 1'b0;"<<endl;
+for(int k=0; k<inputs.size(); k++){
+     switch(k){
+         case 1:
+         OL << inputs[k] + " = 1'b1; "; break;
+         default:
+         OL << inputs[k] + " = 1'b0; "; break;
+         }
+     }
+//OL << "clk = 1'b0; reset = 1'b1; #2" << endl;
+OL << "#2" << endl;
+//OL << "$display(\"clk = %b, reset = %b, x = %b, outp = %b\", clk, reset, x, outp);"<<endl;
+OL << inputs[1] + " = 1'b0; ";
   for (int i = 0; i <x.size(); i++)
  {
-   OL <<"x = 1'b"<<x[i]<<";"<<" #2"<<endl;
-   OL << "$display(\"clk = %b, reset = %b, x = %b, outp = %b\", clk, reset, x, outp);"<<endl;
-    
+   OL << inputs[2] + " = 1'b" << x[i] << "; #2" << endl;
+   OL << "$display(\"" + inputs[0] + " = %b, " + inputs[1] + " = %b, " + inputs[2] + " = %b, " + outputs[0] + " = %b\", " + inputs[0] + ", " + inputs[1] + ", " + inputs[2] + ", " + outputs[0]+ ");" << endl;
  }
 
 OL << "$finish;"<<endl;
